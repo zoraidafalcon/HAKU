@@ -12,7 +12,7 @@ body {
     display: flex;
     overflow: hidden;
     flex-direction: column;
-    background: rgb(30, 16, 110)
+    background: rgb(30, 16, 110);
 }
 
 .details-game {
@@ -29,7 +29,8 @@ body {
     height: 100%;
     background-color: rgb(134, 200, 28);
     display: grid;
-    grid-template: repeat(20, 1fr) / repeat(20,1fr);
+    grid-template: repeat(12, 50px) / repeat(20,50px);
+    
 }
 
 .table-game .food {
@@ -39,4 +40,5 @@ body {
 
 .table-game .haku {
     background-color: green;
+
 }
