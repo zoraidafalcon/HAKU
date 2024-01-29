@@ -1,47 +1,51 @@
-var tableGame = document.querySelector(".table-game");
-
-var foodX, foodY;
-// var hakuX = 10
-// var hakuY = 2
-var speedY = 0
-var speedX = 0
-
-var myHaku= [{hakuX:10, hakuY:2},{hakuX:11,hakuY:2}
-]
-
-var changeFoodPosition = () => {
-    foodX = Math.floor(Math.random() * 20) + 1;
-    foodY = Math.floor(Math.random() * 20) + 1;
-};
-
-var changeDirection = (i) => {
-    console.log(i.key)
-    if (i.key === "ArrowUp" || i.key === "w" || i.key === "W") {
-        speedY = -1;
-        speedX = 0;
-    } else if (i.key === "ArrowDown" || i.key === "s" || i.key === "S") {
-        speedY = 1;
-        speedX = 0;
-    } else if (i.key === "ArrowLeft" || i.key === "a" || i.key === "A") {
-        speedY = 0;
-        speedX = -1;
-    } else if (i.key === "ArrowRight" || i.key === "d" || i.key === "D") {
-        speedY = 0;
-        speedX = 1;
+//nombrar a haku
+function Haku (){
+    var self=this
+    this.posicion = [{x:x, y:y}] // sabemos que la posición va por eje y cordenada
+    this.direccion = null // direccion al comienzo es nula
+    this.render = function(){
+        this.posicion.forEach(function(coordinadas){
+            celda = document.querySelector(`.row${coordinadas.y} .col${coordinadas.x}`)//estoy llamando celda a los valores de x e y
+            celda.classList.add('haku') 
+        })
     }
-    startGame();
-};
+//ahora movimiento es decir las posiciones
+//se guarda en una function
+    this.x = function(){
+        v= {x:this.posicion[0].x}, //si la posicion es x: 50, y: 50 para haku
+           {y:this.posicion[0].y}
 
-var startGame = () => {
-    let htmlMarkup = `<div class="food" style="grid-area:${foodX} / ${foodY}"></div>`;
-    myHaku.forEach(function(part){
-        part.hakuX += speedY;
-        part.hakuY += speedX;
-        htmlMarkup += `<div class="haku" style="grid-area:${part.hakuX} / ${part.hakuY}"></div>`;
-    })
-    tableGame.innerHTML = htmlMarkup;
-};
+        // direccion de haku
+        switch (this.direccion) { //DUDAS PREGUNTAR 
+            case 'up':
+                v.y = (v.y === 1) ? 50 : v.y - 1; //se mueve hacia arriba
+                break;
+            case 'down':
+                v.y = (v.y === 50) ? 1 : v.y + 1; //se mueve hacia abajo
+                break;
+            case 'left':
+                v.x = (v.x === 1) ? 50 : v.x - 1; // se mueve hacia la izquierda
+                break;
+            case 'right':
+                v.x = (v.x === 50) ? 1 : v.x + 1; // se mueve hacia la derecha
+                break;
+        }
+    }
+    this.posicion.unshift(v) // agrega a posicion las direciones de v 
 
-changeFoodPosition();
-startGame();
-document.addEventListener("keydown", changeDirection);
+}
+
+// Teclado
+var teclado = {
+    'w': 'up',
+    's': 'down',
+    'a': 'left',
+    'd': 'right'
+}
+
+window.addEventListener('keydown', function(evento){
+    direccion = teclado[evento.key]
+    if(direccion){haku.direccion}
+})
+
+//aviones de papel
