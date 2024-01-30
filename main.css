@@ -1,21 +1,50 @@
-.main{
-    background-color: aqua;
-    width: 1000px;
-    height: 1000px;
+*,
+*::before,
+*::after {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
 }
 
-td{
-    width: 50px;
-    height: 50px;
-    background-color: cadetblue;
+body {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: #c89eeb;
 }
 
-.haku{
-    background-color: white;
+.wrapper {
+  width: 65vmin;
+  height: 70vmin;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  border-radius: 5px;
+  background-color: #a1b5d8e8;
+  overflow: hidden;
 }
-
-.paper{
-    background-image: url("https://preview.redd.it/first-time-seriously-trying-pixel-art-how-did-i-do-its-v0-dfrvv6ui3f091.png?auto=webp&s=ef9b16438e50ef836f17ecd51e46e5c47ad2d0a4");
-    background-size: contain;
-    background-repeat: no-repeat;
+.game-details {
+  color: #052964;
+  font-weight: 500;
+  font-size: 1.2rem;
+  padding: 20px 27px;
+  display: flex;
+  justify-content: space-between;
+}
+.play-board {
+  height: 100%;
+  width: 100%;
+  display: grid;
+  background: #0c1f49;
+  grid-template: repeat(30, 1fr) / repeat(30, 1fr);
+}
+.play-board .paper {
+  background-color: aqua;
+  background-size: 15px;
+  border-radius: 50%; 
+}
+.play-board .head {
+  background: #dbd7e0;
+  border-radius: 20%;
 }
