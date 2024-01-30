@@ -1,50 +1,55 @@
 *,
 *::before,
 *::after {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
 }
 
 body {
-  min-height: 100vh;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  background-color: #c89eeb;
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: #c89eeb;
 }
 
 .wrapper {
-  width: 65vmin;
-  height: 70vmin;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  border-radius: 5px;
-  background-color: #a1b5d8e8;
-  overflow: hidden;
+    width: 65vmin;
+    height: 70vmin;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    border-radius: 5px;
+    background-color: #a1b5d8e8;
+    overflow: hidden;
 }
 .game-details {
-  color: #052964;
-  font-weight: 500;
-  font-size: 1.2rem;
-  padding: 20px 27px;
-  display: flex;
-  justify-content: space-between;
+    color: #052964;
+    font-weight: 500;
+    font-size: 1.2rem;
+    padding: 20px 27px;
+    display: flex;
+    justify-content: space-between;
 }
 .play-board {
-  height: 100%;
-  width: 100%;
-  display: grid;
-  background: #0c1f49;
-  grid-template: repeat(30, 1fr) / repeat(30, 1fr);
+    height: 100%;
+    width: 100%;
+    display: grid;
+    background: #0c1f49;
+    grid-template: repeat(30, 1fr) / repeat(30, 1fr);
 }
 .play-board .paper {
-  background-color: aqua;
-  background-size: 15px;
-  border-radius: 50%; 
+    background-image: url(/art/Paper.png);
+    background-repeat: no-repeat;
+    
+    background-size: 22px;
+}
+.head{
+    background-image: url(/art/haku.png);
+    background-repeat: no-repeat;
+    background-size: 15px;
 }
 .play-board .head {
-  background: #dbd7e0;
-  border-radius: 20%;
+    border-radius: 20%;
 }

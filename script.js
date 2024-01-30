@@ -116,4 +116,4 @@ const iniciarJuego = () => {
 // Llamar a la actualización de la posición de la comida
 posicionPaper();
 setIntervalId = setInterval(iniciarJuego, 300);
-document.addEventListener("keyup", (dirección)); //PREGUNTAR
+document.addEventListener("keyup", (dirección));
