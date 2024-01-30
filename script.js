@@ -19,73 +19,8 @@ highScoreElement.innerText = `HAKU: ${highScore} puntos`;
 const posicionPaper= () => {
     paperX = Math.floor(Math.random() * 30) + 1;
     paperY = Math.floor(Math.random() * 30) + 1;
-const playBoard = document.getElementsByClassName("play-board")[0];
-const scoreElement = document.getElementsByClassName("score")[0];
-const highScoreElement = document.getElementsByClassName("high-score")[0];
-const controls = document.querySelectorAll(".controls i");
-
-let gameOver = false;
-let paperX, paperY;
-let hakuX = 5, hakuY = 5;
-let velocityX = 0, velocityY = 0;
-let hakuBody = [];
-let setIntervalId;
-let score = 0;
-
-// Se busca la puntuación más alta del almacenamiento local
-let highScore = localStorage.getItem("high-score") || 0;
-highScoreElement.innerText = `HAKU: ${highScore} puntos`;
-
-// Actualizamos la posición de la comida de forma aleatoria
-const posicionPaper= () => {
-    paperX = Math.floor(Math.random() * 30) + 1;
-    paperY = Math.floor(Math.random() * 30) + 1;
 };
 
-// Final del juego
-const finJuego = () => {
-    clearInterval(setIntervalId);
-    alert("Game Over! Pulsa Aceptar para volver a jugar...");
-    location.reload();
-};
-
-// Cambiar la dirección de la serpiente
-var dirección = e => {
-    switch (e.key) {
-        case "ArrowUp":
-        case "w":
-        case "W":
-            if (velocityY !== 1) {
-                velocityX = 0;
-                velocityY = -1;
-            }
-            break;
-        case "ArrowDown":
-        case "s":
-        case "S":
-            if (velocityY !== -1) {
-                velocityX = 0;
-                velocityY = 1;
-            }
-            break;
-        case "ArrowLeft":
-        case "a":
-        case "A":
-            if (velocityX !== 1) {
-                velocityX = -1;
-                velocityY = 0;
-            }
-            break;
-        case "ArrowRight":
-        case "d":
-        case "D":
-            if (velocityX !== -1) {
-                velocityX = 1;
-                velocityY = 0;
-            }
-            break;
-        default:
-            break;
 // Final del juego
 const finJuego = () => {
     clearInterval(setIntervalId);
@@ -154,8 +89,8 @@ const iniciarJuego = () => {
         highScoreElement.innerText = `Puntuación más alta: ${highScore} puntos`;
     }
     // Actualización de la posición de la cabeza de la serpiente en función de la velocidad actual
- hakuX += velocityX;
- hakuY += velocityY;
+        hakuX += velocityX;
+        hakuY += velocityY;
 
     // Desplazando hacia adelante los valores de los elementos en el cuerpo de la serpiente en uno
     for (let i = hakuBody.length - 1; i > 0; i--) {
