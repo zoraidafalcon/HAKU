@@ -105,10 +105,26 @@ const iniciarJuego = () => {
         return gameOver = true;
     }
 
+   
     for (let i = 0; i < hakuBody.length; i++) {
-        // Se dibuja un div para cada parte del cuerpo de la serpiente.
-        html += `<div class="head" style="grid-area: ${hakuBody[i][1]} / ${hakuBody[i][0]}"></div>`;
-        
+    // Se dibuja un div para cada parte del cuerpo de la serpiente.
+        if (hakuBody.length === 1) {
+            html += `<div class="head" style="grid-area: ${hakuBody[0][1]} / ${hakuBody[0][0]}"></div>`;
+        } else if (hakuBody.length === 2) {
+            html += `<div class="head" style="grid-area: ${hakuBody[0][1]} / ${hakuBody[0][0]}"></div>`;
+            html += `<div class="tail" style="grid-area: ${hakuBody[i][1]} / ${hakuBody[i][0]}"></div>`;
+        } else {
+            html += `<div class="head" style="grid-area: ${hakuBody[0][1]} / ${hakuBody[0][0]}"></div>`;
+
+            for (let i = 1; i < hakuBody.length - 1; i++) {
+                html += `<div class="body" style="grid-area: ${hakuBody[i][1]} / ${hakuBody[i][0]}"></div>`;
+            }
+
+            for (let i = hakuBody.length - 1; i < hakuBody.length; i++) {
+                html += `<div class="tail" style="grid-area: ${hakuBody[i][1]} / ${hakuBody[i][0]}"></div>`;
+            }
+        }
+
         // Comprobamos si la cabeza de la serpiente golpeó el cuerpo, si es así, establezca gameOver en verdadero
         if (i !== 0 && hakuBody[0][1] === hakuBody[i][1] && hakuBody[0][0] === hakuBody[i][0]) {
             gameOver = true;
@@ -118,5 +134,5 @@ const iniciarJuego = () => {
 }
 // Llamar a la actualización de la posición de la comida
 posicionPaper();
-setIntervalId = setInterval(iniciarJuego, 300);
+setIntervalId = setInterval(iniciarJuego, 200);
 document.addEventListener("keyup", (dirección));
