@@ -8,6 +8,7 @@ let paperX, paperY;
 let hakuX = 5, hakuY = 5;
 let velocityX = 0, velocityY = 0;
 let hakuBody = [];
+
 let setIntervalId;
 let score = 0;
 
@@ -15,7 +16,7 @@ let score = 0;
 let highScore = localStorage.getItem("high-score") || 0;
 highScoreElement.innerText = `HAKU: ${highScore} puntos`;
 
-// Actualizamos la posición de la comida de forma aleatoria
+// Actualizamos la posición de los aviones de papel de forma aleatoria
 const posicionPaper= () => {
     paperX = Math.floor(Math.random() * 30) + 1;
     paperY = Math.floor(Math.random() * 30) + 1;
@@ -71,6 +72,7 @@ var dirección = e => {
 // Llamar a dirección en cada clic y pasar el valor del conjunto de datos clave como un objeto
 controls.forEach(button => button.addEventListener("click", () => dirección({ key: button.dataset.key })));
 
+//Inicio del juego
 const iniciarJuego = () => {
     if (gameOver) return finJuego();
     let html = `<div class="paper" style="grid-area:${paperY} / ${paperX}"></div>`;
@@ -78,15 +80,15 @@ const iniciarJuego = () => {
     // Comprobamos si la serpiente se come la comida.
     if (hakuX === paperX && hakuY === paperY) {
         posicionPaper();
-     hakuBody.push([paperY, paperX]); // Empujamos la comida a la matriz del cuerpo de la serpiente, para que la serpiente crezca
+        hakuBody.push(hakuBody.length - 1 [paperY, paperX]); // Empujamos la comida a la matriz del cuerpo de la serpiente, para que la serpiente crezca
         score++; 
         // Se incrementa la puntuación en 1
 
         // Guardamos las puntuaciones
         highScore = score >= highScore ? score : highScore;
         localStorage.setItem("high-score", highScore);
-        scoreElement.innerText = `Puntuación: ${score} puntos`;
-        highScoreElement.innerText = `Puntuación más alta: ${highScore} puntos`;
+        scoreElement.innerText = `Aviones de papel: ${score} puntos`;
+        highScoreElement.innerText = `HAKU: ${highScore} puntos`;
     }
     // Actualización de la posición de la cabeza de la serpiente en función de la velocidad actual
         hakuX += velocityX;
@@ -106,6 +108,7 @@ const iniciarJuego = () => {
     for (let i = 0; i < hakuBody.length; i++) {
         // Se dibuja un div para cada parte del cuerpo de la serpiente.
         html += `<div class="head" style="grid-area: ${hakuBody[i][1]} / ${hakuBody[i][0]}"></div>`;
+        
         // Comprobamos si la cabeza de la serpiente golpeó el cuerpo, si es así, establezca gameOver en verdadero
         if (i !== 0 && hakuBody[0][1] === hakuBody[i][1] && hakuBody[0][0] === hakuBody[i][0]) {
             gameOver = true;

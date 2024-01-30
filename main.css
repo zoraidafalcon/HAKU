@@ -11,7 +11,9 @@ body {
   display: flex;
   align-items: center;
   justify-content: center;
-  background-color: #c89eeb;
+  background-image: url(/art/background.png);
+  background-repeat: no-repeat;
+  background-size:100%;
 }
 
 .wrapper {
@@ -21,7 +23,7 @@ body {
   flex-direction: column;
   justify-content: center;
   border-radius: 5px;
-  background-color: #a1b5d8e8;
+  background-color:rgba(97, 165, 165, 0.671);
   overflow: hidden;
 }
 .game-details {
@@ -36,15 +38,29 @@ body {
   height: 100%;
   width: 100%;
   display: grid;
-  background: #0c1f49;
+  background-color: #914d4d;
   grid-template: repeat(30, 1fr) / repeat(30, 1fr);
 }
 .play-board .paper {
-  background-color: aqua;
-  background-size: 15px;
-  border-radius: 50%; 
+  background-image: url(/art/Paper.png);
+  background-repeat: no-repeat;
+  background-size: 20px;
+   
 }
 .play-board .head {
-  background: #dbd7e0;
-  border-radius: 20%;
+  background-image: url(/art/haku.png);
+
+  background-size: 15px;
+  background-repeat: no-repeat;
+  
+}
+.play-board .body{
+  background-color: white;
+  border-radius: 30%;
+  
+}
+.play-board .tail{
+  background-color: rgb(140, 140, 143);
+  border-radius: 30%;
+  
 }
