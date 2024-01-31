@@ -18,14 +18,35 @@ highScoreElement.innerText = `HAKU: ${highScore} puntos`;
 
 // Actualizamos la posición de los aviones de papel de forma aleatoria
 const posicionPaper= () => {
-    paperX = Math.floor(Math.random() * 30) + 1;
-    paperY = Math.floor(Math.random() * 30) + 1;
+    do{paperX = Math.floor(Math.random() * 15) + 1;
+        paperY = Math.floor(Math.random() * 15) + 1;
+    }while(coincideConHaku(paperX,paperY)) ;
+    
 };
+// limitar que los aviones en modo random salgan encima del cuerpo de haku
+const coincideConHaku= (x,y) => {
+    for (let i = 0; i < hakuBody.length; i++){
+        if(hakuBody[i].x === x && hakuBody[i].y === y){
+            return true
+        }
+    }
+    return false
+}
+
+// // Final del juego
+// const finJuego = () => {
+//     clearInterval(setIntervalId);
+//     alert("Game Over! Pulsa Aceptar para volver a jugar...");
+//     location.reload();
+// };
 
 // Final del juego
-const finJuego = () => {
+const finJuego= () => {
     clearInterval(setIntervalId);
-    alert("Game Over! Pulsa Aceptar para volver a jugar...");
+    var hakuCrashes = new Audio("sounds/Haku-crashes.wav");
+    hakuCrashes.play();
+  
+    alert("Game Over! Press 'enter' to try again");
     location.reload();
 };
 
@@ -80,15 +101,19 @@ const iniciarJuego = () => {
     // Comprobamos si la serpiente se come la comida.
     if (hakuX === paperX && hakuY === paperY) {
         posicionPaper();
+        var eatPaper = new Audio("sounds/Eat-Paper.mp3");
+        setTimeout(function() {
+            eatPaper.pause();
+          }, 1000);
+        eatPaper.play();
         hakuBody.push(hakuBody.length - 1 [paperY, paperX]); // Empujamos la comida a la matriz del cuerpo de la serpiente, para que la serpiente crezca
-        score++; 
-        // Se incrementa la puntuación en 1
+        score++; // Se incrementa la puntuación en 1
 
         // Guardamos las puntuaciones
         highScore = score >= highScore ? score : highScore;
-        localStorage.setItem("high-score", highScore);
-        scoreElement.innerText = `Aviones de papel: ${score} puntos`;
-        highScoreElement.innerText = `HAKU: ${highScore} puntos`;
+        localStorage.setItem("Aviones de papel:", highScore);
+        scoreElement.innerText = `HAKU: ${score} puntos`;
+        highScoreElement.innerText = `Highest score: ${highScore} papers`;
     }
     // Actualización de la posición de la cabeza de la serpiente en función de la velocidad actual
         hakuX += velocityX;
@@ -101,7 +126,7 @@ const iniciarJuego = () => {
         hakuBody[0] =  [hakuX, hakuY]; // Configuración del primer elemento del cuerpo de la serpiente en la posición actual de la serpiente
 
     // Comprobando si la cabeza de la serpiente está fuera de la pared, si es así se configura gameOver en verdadero para finalizar el juego
-    if  (hakuX <= 0 || hakuX > 30 || hakuY <= 0 || hakuY > 30) {
+    if  (hakuX <= 0 || hakuX > 15 || hakuY <= 0 || hakuY > 15) {
         return gameOver = true;
     }
 
@@ -112,7 +137,7 @@ const iniciarJuego = () => {
             html += `<div class="head" style="grid-area: ${hakuBody[0][1]} / ${hakuBody[0][0]}"></div>`;
         } else if (hakuBody.length === 2) {
             html += `<div class="head" style="grid-area: ${hakuBody[0][1]} / ${hakuBody[0][0]}"></div>`;
-            html += `<div class="tail" style="grid-area: ${hakuBody[i][1]} / ${hakuBody[i][0]}"></div>`;
+            html += `<div class="tail" style="grid-area: ${hakuBody[1][1]} / ${hakuBody[1][0]}"></div>`;
         } else {
             html += `<div class="head" style="grid-area: ${hakuBody[0][1]} / ${hakuBody[0][0]}"></div>`;
 
@@ -128,6 +153,7 @@ const iniciarJuego = () => {
         // Comprobamos si la cabeza de la serpiente golpeó el cuerpo, si es así, establezca gameOver en verdadero
         if (i !== 0 && hakuBody[0][1] === hakuBody[i][1] && hakuBody[0][0] === hakuBody[i][0]) {
             gameOver = true;
+           
         }
     }
     playBoard.innerHTML = html;
