@@ -3,11 +3,14 @@ const scoreElement = document.getElementsByClassName("score")[0];
 const highScoreElement = document.getElementsByClassName("high-score")[0];
 const controls = document.querySelectorAll(".controls i");
 const startButton = document.getElementById("startButton")
+const endButton = document.getElementById("overButton")
 
-const start = document.getElementsByClassName("start")
-const wrapper = document.getElementsByClassName("wrapper")
 
-startButton.addEventListener("click", iniciarJuego)
+const start = document.getElementById("start")
+const wrapper = document.getElementById("wrapper")
+const over = document.getElementById("over")
+
+
 
 
 let gameOver = false;
@@ -40,25 +43,20 @@ const coincideConHaku= (x,y) => {
     return false
 }
 
-// // Final del juego
-// const finJuego = () => {
-//     clearInterval(setIntervalId);
-//     alert("Game Over! Pulsa Aceptar para volver a jugar...");
-//     location.reload();
-// };
-
 // Final del juego
 const finJuego= () => {
+    over.classList.remove('hidden')
+    wrapper.setAttribute('class', 'hidden')
+
     clearInterval(setIntervalId);
     var hakuCrashes = new Audio("sounds/Haku-crashes.wav");
     hakuCrashes.play();
-  
-    alert("Game Over! Press 'enter' to try again");
-    location.reload();
+     //alert("Game Over! Press 'enter' to try again");
+    //
 };
 
 // Cambiar la dirección de la serpiente
-var dirección = e => {
+var direccion = e => {
     switch (e.key) {
         case "ArrowUp":
         case "w":
@@ -66,6 +64,7 @@ var dirección = e => {
             if (velocityY !== 1) {
                 velocityX = 0;
                 velocityY = -1;
+             
             }
             break;
         case "ArrowDown":
@@ -91,21 +90,24 @@ var dirección = e => {
                 velocityX = 1;
                 velocityY = 0;
             }
-            break;inicio
+            break;//inicio
         default:
             break;
     }
 };
 
 // Llamar a dirección en cada clic y pasar el valor del conjunto de datos clave como un objeto
-controls.forEach(button => button.addEventListener("click", () => dirección({ key: button.dataset.key })));
+controls.forEach(button => button.addEventListener("click", () => direccion({ key: button.dataset.key })));
+
 
 //Inicio del juego
 const iniciarJuego = () => {
-    //Llamar elemento del dom que controla la pag de inicio
-    start.classList.toggle
+
+
+
     //Añadir clase hidden
     //Llamar elemento del dom que controla la pag de juego
+   // over.classList.toggle('hidden')
     //Eliminar clase hidden
 
 
@@ -174,9 +176,25 @@ const iniciarJuego = () => {
     }
     playBoard.innerHTML = html;
 }
+
+window.onload = function(){
+
+startButton.addEventListener("click", inicio)
+
+}
+
+function inicio(){
+        //Llamar elemento del dom que controla la pag de inicio
+    start.setAttribute('class', 'hidden')
+    wrapper.classList.remove('hidden')
+    setIntervalId = setInterval(iniciarJuego, 200);
+
+}
+
+
+
+endButton.addEventListener('click', () => {location.reload()})
 // Llamar a la actualización de la posición de la comida
 posicionPaper();
-setIntervalId = setInterval(iniciarJuego, 200);
-document.addEventListener("keyup", (dirección));
-
+document.addEventListener("keyup", (direccion));
 
