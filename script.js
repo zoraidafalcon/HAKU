@@ -2,6 +2,13 @@ const playBoard = document.getElementsByClassName("play-board")[0];
 const scoreElement = document.getElementsByClassName("score")[0];
 const highScoreElement = document.getElementsByClassName("high-score")[0];
 const controls = document.querySelectorAll(".controls i");
+const startButton = document.getElementById("startButton")
+
+const start = document.getElementsByClassName("start")
+const wrapper = document.getElementsByClassName("wrapper")
+
+startButton.addEventListener("click", iniciarJuego)
+
 
 let gameOver = false;
 let paperX, paperY;
@@ -84,7 +91,7 @@ var dirección = e => {
                 velocityX = 1;
                 velocityY = 0;
             }
-            break;
+            break;inicio
         default:
             break;
     }
@@ -95,6 +102,15 @@ controls.forEach(button => button.addEventListener("click", () => dirección({ k
 
 //Inicio del juego
 const iniciarJuego = () => {
+    //Llamar elemento del dom que controla la pag de inicio
+    start.classList.toggle
+    //Añadir clase hidden
+    //Llamar elemento del dom que controla la pag de juego
+    //Eliminar clase hidden
+
+
+
+
     if (gameOver) return finJuego();
     let html = `<div class="paper" style="grid-area:${paperY} / ${paperX}"></div>`;
 
@@ -162,3 +178,5 @@ const iniciarJuego = () => {
 posicionPaper();
 setIntervalId = setInterval(iniciarJuego, 200);
 document.addEventListener("keyup", (dirección));
+
+

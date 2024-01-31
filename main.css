@@ -19,7 +19,8 @@ body {
 .wrapper {
   width: 65vmin;
   height: 70vmin;
-  display: flex;
+  position: absolute;
+  display:flex;
   flex-direction: column;
   justify-content: center;
   border-radius: 5px;
@@ -71,6 +72,45 @@ body {
   transform: rotate(45deg);
 }
 
+.start{
+  width: 65vmin;
+  height: 70vmin;
+  display: flex;
+  position: absolute;
+  flex-direction: column;
+  justify-content: center;
+  border-radius: 5px;
+  background-color:rgba(146, 12, 12);
+  overflow: hidden;
+  z-index: -1;
+}
+
+.over{
+  width: 65vmin;
+  height: 70vmin;
+  display: flex;
+  position: absolute;
+  flex-direction: column;
+  justify-content: center;
+  border-radius: 5px;
+  background-color:rgb(51, 35, 139);
+  overflow: hidden;
+  z-index: 1;
+}
+
 .hidden{
+  width: 65vmin;
+  height: 70vmin;
   display: none;
+  flex-direction: column;
+  justify-content: center;
+  border-radius: 5px;
+  background-color:rgba(146, 12, 12, 0.8);
+  overflow: hidden;
+}
+
+button{
+  width:85px;
+  height: 75px;
+  align-self: center;
 }
