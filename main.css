@@ -6,12 +6,16 @@
   box-sizing: border-box;
 }
 
+* {
+  font-family: 'Unlock', 'Courier New', Courier, monospace;
+}
+
 body {
   min-height: 100vh;
   display: flex;
   align-items: center;
   justify-content: center;
-  background-image: url(/art/background.png);
+  background-image: url(./art/background.png);
   background-repeat: no-repeat;
   background-size:100%;
 }
@@ -27,6 +31,7 @@ body {
   background-color:rgba(97, 165, 165, 0.671);
   overflow: hidden;
 }
+
 .game-details {
   color: #052964;
   font-weight: 500;
@@ -35,6 +40,7 @@ body {
   display: flex;
   justify-content: space-between;
 }
+
 .play-board {
   height: 100%;
   width: 100%;
@@ -42,24 +48,26 @@ body {
   background-color: #914d4d;
   grid-template: repeat(15, 1fr) / repeat(15, 1fr);
 }
+
 .play-board .paper {
-  background-image: url(/art/Paper.png);
+  background-image: url(./art/Paper.png);
   background-repeat: no-repeat;
   background-size: 40px;
    
 }
+
 .play-board .head {
-  background-image: url(/art/haku.png);
+  background-image: url(./art/haku.png);
   background-size: 28px;
   background-repeat: no-repeat;
   
 }
+
 .play-board .body{
   background-color: #c5c8d7;
-  border-radius: 50%;
-
-  
+  border-radius: 50%;  
 }
+
 .play-board .tail{
   width: 20px; 
   height: 20px; 
@@ -80,36 +88,55 @@ body {
   flex-direction: column;
   justify-content: center;
   border-radius: 5px;
-  background-color:rgba(146, 12, 12);
+  background-color:#cf4046;
+  background-image: url("./art/5.jpg");
+  background-repeat: no-repeat;
+  background-position-x: 50%;
+  background-position-y:48%;
   overflow: hidden;
+}
+
+.start #startButton {
+  height: 90px;
+  width: 160px;
+  align-self: center;
+  background-color: #5e422c;
+  border: 2px #5e422c solid;
+  color: #c42f4c;
+  border-radius: 40%;
+  font-size: 40px;
 }
 
 .over{
   width: 65vmin;
   height: 70vmin;
-  display: flex;
-  position: absolute;
-  flex-direction: column;
   justify-content: center;
-  border-radius: 5px;
-  background-color:rgb(51, 35, 139);
+  background-color:#227dac;
+  background-image: url("./art/4.jpg");
+  background-repeat: no-repeat;
+  background-position-y: 100%;
   overflow: hidden;
+  text-align: center;
+}
 
+p {
+  margin-top: 10%;
+  margin-bottom: 30%;
+  font-size: 80px;
+  color: #acab01;
+}
+
+#overButton {
+  height: 90px;
+  width: 180px;
+  align-self: center;
+  background-color: #acab01;
+  border: 2px #acab01 solid;
+  border-radius: 80%;
+  color: #307eac;
+  font-size: 30px;
 }
 
 .hidden{
- /*  width: 65vmin;
-  height: 70vmin;
   display: none;
-  flex-direction: column;
-  justify-content: center;
-  border-radius: 5px;
-  background-color:rgba(146, 12, 12, 0.8); */
-  display: none;
-}
-
-button{
-  width:85px;
-  height: 75px;
-  align-self: center;
 }
